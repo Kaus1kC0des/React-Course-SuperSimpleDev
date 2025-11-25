@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script type="text/babel">
+    const mainContainer = document.querySelector(".js-container");
+    const socks = 10;
+    const tShirts = 8;
+    console.log(socks + tShirts * 2);
+    ReactDOM.createRoot(mainContainer).render()
+</script>
+</body>
+</html>
