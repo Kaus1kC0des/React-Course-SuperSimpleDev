@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 1</title>
+
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    const mainContainer = document.querySelector(".js-container");
+    const day = dayjs().format("YYYY-MM-DD");
+    console.log(day);
+    ReactDOM.createRoot(mainContainer).render(paragraph)
+</script>
+</body>
+</html>
