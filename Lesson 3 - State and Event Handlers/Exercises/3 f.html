@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex 3.a</title>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function CounterButton({counter, setCounter}) {
+        return (
+            <>
+                {counter === 1 && <button onClick={() => setCounter(counter + 1)}>Clicked {counter} time</button>}
+                {counter !== 1 && <button onClick={() => setCounter(counter + 1)}>Clicked {counter} times</button>}
+            </>
+        )
+    }
+
+    function Reset({setCounter}) {
+        return (
+            <>
+                <button onClick={() => setCounter(0)}>Reset</button>
+            </>
+        )
+    }
+
+    function App() {
+        const [counter, setCounter] = React.useState(0);
+        return (
+            <>
+                <CounterButton counter={counter} setCounter={setCounter}/>
+                <CounterButton counter={counter} setCounter={setCounter}/>
+                <Reset setCounter={setCounter}/>
+            </>
+        )
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<App/>)
+</script>
+</body>
+</html>
