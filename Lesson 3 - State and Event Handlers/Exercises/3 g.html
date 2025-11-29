@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex 3.a</title>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function InputElement({text, setText}) {
+        function updateText(event) {
+            setText(event.target.value);
+        }
+
+        return (
+            <>
+                <input type="text" onChange={updateText}/>
+            </>
+        )
+    }
+
+    function Text({text}) {
+        return (
+            <>
+                <p>Hello {text}</p>
+            </>
+        )
+    }
+
+    function App() {
+        const [text, setText] = React.useState("");
+        return (
+            <>
+                <InputElement text={text} setText={setText}/>
+                <Text text={text}/>
+            </>
+        )
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<App/>)
+</script>
+</body>
+</html>
