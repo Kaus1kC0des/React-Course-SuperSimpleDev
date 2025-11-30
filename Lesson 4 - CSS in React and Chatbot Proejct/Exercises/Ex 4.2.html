@@ -28,16 +28,43 @@
 <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 <script type="text/babel">
-    function LoginForm() {
+
+    function LoginForm({text, setText}) {
+        const passwordRef = React.useRef(null);
+        const [showPassword, setShowPassword] = React.useState(false);
+        React.useEffect(() => {
+            if (passwordRef.current) {
+                passwordRef.current.type = showPassword ? "text" : "password";
+            }
+        }, [showPassword]);
         return (
             <>
-                <div><input className="input-field" placeholder="Email" type="email"/></div>
-                <div><input className="input-field" placeholder="Password" type="password"/></div>
-                <button className="input-button">Login</button>
-                <button className="input-button">Sign Up</button>
+                <div>
+                    <input
+                        className="input-field"
+                        type="email"
+                        placeholder="Email"
+                    />
+                </div>
+                <div>
+                    <input
+                        className="input-field"
+                        type="password"
+                        ref={passwordRef}
+                        placeholder="Password"
+                    />
+                    <button
+                        style={{height: "35px"}}
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? "Hide Password" : "Show Password"}
+                    </button>
+                </div>
             </>
         )
     }
+
 
     function App() {
         return (
