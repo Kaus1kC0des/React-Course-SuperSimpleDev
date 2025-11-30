@@ -12,24 +12,38 @@
 <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 <script type="text/babel">
-    function Button() {
+    function Button({state, setState}) {
         return (
             <>
                 <button className="button-1a"
                         style={{
-                            "background-color": "rgb(25,135, 84)",
+                            "backgroundColor": "rgb(25,135, 84)",
                             "color": "white",
                             "height": "50px",
                             "width": "70px",
                             "padding": "10px 12px",
-                        }}>ON
+                        }}
+                        onClick={() => setState(!state)}
+                >
+                    {
+                        state === true ? "ON" : "OFF"
+                    }
                 </button>
             </>
         )
     }
 
+    function App() {
+        const [state, setState] = React.useState(false);
+        return (
+            <>
+                <Button state={state} setState={setState}/>
+            </>
+        )
+    }
+
     const div = document.querySelector(".js-container");
-    ReactDOM.createRoot(div).render(<Button/>)
+    ReactDOM.createRoot(div).render(<App/>)
 </script>
 </body>
 </html>
