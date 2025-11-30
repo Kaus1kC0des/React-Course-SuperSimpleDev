@@ -29,48 +29,18 @@
 <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
 <script type="text/babel">
 
-    function LoginForm({text, setText}) {
-        const passwordRef = React.useRef(null);
-        const [showPassword, setShowPassword] = React.useState(false);
-        React.useEffect(() => {
-            if (passwordRef.current) {
-                passwordRef.current.type = showPassword ? "text" : "password";
-            }
-        }, [showPassword]);
-        return (
-            <>
-                <div>
-                    <input
-                        className="input-field"
-                        type="email"
-                        placeholder="Email"
-                    />
-                </div>
-                <div>
-                    <input
-                        className="input-field"
-                        type="password"
-                        ref={passwordRef}
-                        placeholder="Password"
-                    />
-                    <button
-                        style={{height: "35px"}}
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                    >
-                        {showPassword ? "Hide Password" : "Show Password"}
-                    </button>
-                </div>
-            </>
-        )
-    }
-
-
     function App() {
+        const [time, setTime] = React.useState(dayjs().format("HH:mm:ss"));
+
+        React.useEffect(() => {
+            setInterval(() => {
+                setTime(dayjs().format("HH:mm:ss"));
+            }, 1000);
+        }, []);
+
         return (
             <>
-                <h1 style={{fontFamily: "Arial"}}>Hello, welcome to my website!</h1>
-                <LoginForm/>
+                <h1>Current Time: {time}</h1>
             </>
         )
     }
