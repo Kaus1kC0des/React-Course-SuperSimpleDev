@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise 4.2</title>
+    <style>
+        .input-field {
+            height: 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 10px 12px
+        }
+
+        .input-button {
+            background-color: rgb(0, 123, 255);
+            margin-right: 3px;
+            color: white;
+            height: 35px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function LoginForm() {
+        return (
+            <>
+                <div><input className="input-field" placeholder="Email" type="email"/></div>
+                <div><input className="input-field" placeholder="Password" type="password"/></div>
+                <button className="input-button">Login</button>
+                <button className="input-button">Sign Up</button>
+            </>
+        )
+    }
+
+    function App() {
+        return (
+            <>
+                <h1 style={{fontFamily: "Arial"}}>Hello, welcome to my website!</h1>
+                <LoginForm/>
+            </>
+        )
+    }
+
+    const div = document.querySelector(".js-container");
+    ReactDOM.createRoot(div).render(<App/>)
+</script>
+</body>
+</html>
