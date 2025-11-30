@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ChatBot</title>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function ChatInput({chatMessages, setChatMessages, isLoading, setIsLoading}) {
+        const [inputText, setInputText] = React.useState("");
+
+        function updateInputText(event) {
+            setInputText(event.target.value);
+        }
+
+        async function sendMessage() {
+            setIsLoading(true);
+            const chatMessagesCopy = [
+                ...chatMessages,
+                {message: inputText, sender: "user", id: crypto.randomUUID()},
+            ];
+            setChatMessages([...chatMessagesCopy, {}]);
+            setInputText("Loading....");
+            const response = await Chatbot.getResponseAsync(inputText);
+            setChatMessages([
+                ...chatMessagesCopy,
+                {
+                    message: response,
+                    sender: "robot",
+                    id: crypto.randomUUID(),
+                },
+            ]);
+            setInputText("");
+            setIsLoading(false);
+        }
+
+        function keyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            } else if (event.key === "Escape") {
+                setInputText("");
+            }
+        }
+
+        return (
+            <>
+                <input
+                    placeholder="Enter your message here..."
+                    size="40"
+                    onChange={updateInputText}
+                    value={inputText}
+                    onKeyDown={keyPress}
+                />
+                <button
+                    onClick={sendMessage}
+                    disabled={inputText.trim() === "" || isLoading}
+                >
+                    Send Message
+                </button>
+            </>
+        );
+    }
+
+    function ChatMessage({message, sender}) {
+        return (
+            <div>
+                {sender === "robot" && (
+                    <img
+                        src="../static/robot.png"
+                        alt="Robot"
+                        style={{width: "50px", height: "50px"}}
+                    />
+                )}
+                {message}
+                {sender === "user" && (
+                    <img
+                        className="avatar"
+                        src="../static/user.png"
+                        alt="User Avatar"
+                        style={{width: "50px", height: "50px"}}
+                    />
+                )}
+            </div>
+        );
+    }
+
+    function ChatMessages({chatMessages}) {
+        return (
+            <div className="chat-messages">
+                {chatMessages.map((message) => {
+                    return (
+                        <ChatMessage
+                            message={message.message}
+                            sender={message.sender}
+                            key={crypto.randomUUID()}
+                        />
+                    );
+                })}
+            </div>
+        );
+    }
+
+    function App() {
+        const [chatMessages, setChatMessages] = React.useState([]);
+        const [isLoading, setIsLoading] = React.useState(false);
+        return (
+            <>
+                <ChatInput
+                    chatMessages={chatMessages}
+                    setChatMessages={setChatMessages}
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                />
+                <ChatMessages chatMessages={chatMessages}/>
+            </>
+        );
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<App/>);
+</script>
+</body>
+</html>
