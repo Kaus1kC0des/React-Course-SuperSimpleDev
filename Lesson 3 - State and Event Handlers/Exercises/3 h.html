@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex 3.a</title>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function InputElement({text, setText, examplesArray}) {
+        function updateText(event) {
+            setText(event.target.value);
+        }
+
+        function generateExample() {
+            const randomName = Math.floor(Math.random() * (examplesArray.length - 1));
+            setText(examplesArray[randomName]);
+        }
+
+        return (
+            <div>
+                <input type="text" onChange={updateText} value={text}/>
+                <button onClick={() => setText("")}>Reset</button>
+                <button onClick={generateExample}>Example</button>
+            </div>
+        )
+    }
+
+    function Text({text}) {
+        return (
+            <>
+                <p>Hello {text}</p>
+            </>
+        )
+    }
+
+    function App() {
+        const [text, setText] = React.useState("");
+        const examplesArray = ["Kausik", "Karthick", "Jenavani", "Guru", "Godwin", "Gunal", "Jaya", "Alan"]
+        return (
+            <>
+                <InputElement text={text} setText={setText} examplesArray={examplesArray}/>
+                <Text text={text}/>
+            </>
+        )
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<App/>)
+</script>
+</body>
+</html>
