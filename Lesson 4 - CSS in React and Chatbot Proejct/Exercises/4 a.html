@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function Button() {
+        return (
+            <>
+                <button style={{backgroundColor: 'rgb(25, 135, 84)', height: "30px", width: "50px"}}>ON</button>
+            </>
+        )
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<Button/>)
+</script>
+
+</body>
+</html>
