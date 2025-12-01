@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4c</title>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+    function Button({isButtonOn, setIsButtonOn}) {
+        const color = isButtonOn ? "rgb(25, 135, 84)" : "rgb(220, 53, 69)"
+
+        function toggleButton() {
+            setIsButtonOn(!isButtonOn);
+        }
+
+        return (
+            <>
+                <button style={{backgroundColor: color, height: "30px", width: "40px"}} onClick={toggleButton}>
+                    {isButtonOn ? "ON" : "OFF"}
+                </button>
+            </>
+        )
+    }
+
+    function App() {
+        const [isButtonOn, setButtonOn] = React.useState(true);
+        return (
+            <>
+                <Button isButtonOn={isButtonOn} setIsButtonOn={setButtonOn}/>
+            </>
+        )
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<App/>)
+</script>
+
+</body>
+</html>
