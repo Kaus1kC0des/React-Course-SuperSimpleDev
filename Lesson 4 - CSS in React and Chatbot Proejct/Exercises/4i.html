@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4h</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        button {
+            margin: 5px;
+            background-color: rgb(25, 135, 84);
+            height: 45px;
+            width: 135px;
+        }
+
+        .flex-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            background-color: rgb(222, 222, 222);
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="js-container"></div>
+<script src="https://unpkg.com/supersimpledev/react.js"></script>
+<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>
+<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+<script type="text/babel">
+
+    function App() {
+        const [counter, setCounter] = React.useState(0);
+        const primaryButton = React.useRef(null);
+
+        function continousClick() {
+            setInterval(() => {
+                primaryButton.current.click();
+            }, 1000);
+        }
+
+        return (
+            <div className="flex-container">
+                <button ref={primaryButton} onClick={() => setCounter(counter + 1)}>Clicked {counter} times</button>
+                <button onClick={() => setCounter(0)}>Reset</button>
+                <button onClick={continousClick}>Auto Click</button>
+            </div>
+        )
+    }
+
+    const container = document.querySelector(".js-container");
+    ReactDOM.createRoot(container).render(<App/>)
+</script>
+
+</body>
+</html>
