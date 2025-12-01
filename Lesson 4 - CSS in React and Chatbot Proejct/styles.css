@@ -72,3 +72,8 @@ body {
     scroll-behavior: auto;
     scrollbar-width: none;
 }
+
+.loading-img {
+    height: 40px;
+    margin: -15px;
+}
