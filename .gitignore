@@ -10,7 +10,7 @@
 .idea/**/shelf
 stylelint.config.cjs
 # AWS User-specific
-didea/**/aws.xml
+idea/**/aws.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -105,3 +105,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+node_modules/
